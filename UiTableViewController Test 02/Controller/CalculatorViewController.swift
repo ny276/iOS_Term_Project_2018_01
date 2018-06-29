@@ -63,6 +63,9 @@ class CalculatorViewController: UIViewController {
                   else if operation == 15 {
                         lblResult.text = String(previousNumber + numberOnView)
                   }
+                  
+                  operation = sender.tag
+                  performingMath = true
             }
             else if sender.tag == 11 {
                   lblResult.text = ""
