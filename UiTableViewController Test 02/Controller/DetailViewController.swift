@@ -76,6 +76,29 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
     }
-
+      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      let indexPath = tableView.indexPathForSelectedRow
+      
+      let currentCell = tableView.cellForRow(at: indexPath!)! as UITableViewCell
+      
+      //getting the text of that cell
+      let currentItem = currentCell.textLabel!.text
+      
+      let alertController = UIAlertController(title: "전화걸기", message: "연결하시겠습니까?\n " + currentItem!, preferredStyle: .alert)
+      let okAction = UIAlertAction(title: "전화연결", style: .default){(myAction: UIAlertAction) -> Void in
+      if let phoneCallURL = URL(string:"tel:\(self.tel1)") {
+      let application:UIApplication = UIApplication.shared
+      if (application.canOpenURL(phoneCallURL)) {
+      application.open(phoneCallURL, options: [:], completionHandler: nil)
+            
+            
+      }
+      
+      }
+      }
+      alertController.addAction(okAction)
+      
+      present(alertController, animated: true, completion: nil)
+      }
 }
 
